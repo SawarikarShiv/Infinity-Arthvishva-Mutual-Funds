@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://infinity-arthvishva.com/sitemap.xml
+
+# Crawl-delay: 10
+# Disallow: /admin/
+# Disallow: /api/
