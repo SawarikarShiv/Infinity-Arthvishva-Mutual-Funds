@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Infinity Symbol -->
+  <path d="M30 30C30 37.1797 24.1797 43 17 43C9.8203 43 4 37.1797 4 30C4 22.8203 9.8203 17 17 17C24.1797 17 30 22.8203 30 30Z" fill="white"/>
+  <path d="M50 30C50 37.1797 44.1797 43 37 43C29.8203 43 24 37.1797 24 30C24 22.8203 29.8203 17 37 17C44.1797 17 50 22.8203 50 30Z" fill="white" fill-opacity="0.8"/>
+  <path d="M17 43C24.1797 43 30 37.1797 30 30C30 22.8203 24.1797 17 17 17V43Z" fill="white" fill-opacity="0.9"/>
+  
+  <!-- Company Name -->
+  <text x="65" y="30" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="bold" fill="white">
+    Infinity Arthvishva
+  </text>
+  <text x="65" y="45" font-family="Inter, Arial, sans-serif" font-size="12" fill="white" fill-opacity="0.8">
+    Mutual Funds
+  </text>
+</svg>
