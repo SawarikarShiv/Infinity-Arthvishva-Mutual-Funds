@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#fef2f2"/>
+  
+  <!-- Shield -->
+  <path d="M200 80C200 80 120 100 120 160C120 220 200 260 200 260C200 260 280 220 280 160C280 100 200 80 200 80Z" fill="#fecaca"/>
+  <path d="M200 100C200 100 140 115 140 160C140 205 200 235 200 235C200 235 260 205 260 160C260 115 200 100 200 100Z" fill="#fca5a5"/>
+  
+  <!-- Risk Meter -->
+  <rect x="100" y="150" width="200" height="30" rx="15" fill="#e5e7eb"/>
+  
+  <!-- Risk Levels -->
+  <rect x="100" y="150" width="50" height="30" rx="15" fill="#10b981"/>
+  <rect x="150" y="150" width="50" height="30" rx="15" fill="#fbbf24"/>
+  <rect x="200" y="150" width="50" height="30" rx="15" fill="#f59e0b"/>
+  <rect x="250" y="150" width="50" height="30" rx="15" fill="#ef4444"/>
+  
+  <!-- Indicator -->
+  <path d="M175 120L185 140L165 140Z" fill="#374151"/>
+  <rect x="175" y="140" width="10" height="20" fill="#374151"/>
+  
+  <!-- Labels -->
+  <text x="125" y="170" font-family="Inter, Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Low</text>
+  <text x="175" y="170" font-family="Inter, Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Mod</text>
+  <text x="225" y="170" font-family="Inter, Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">High</text>
+  <text x="275" y="170" font-family="Inter, Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">V.High</text>
+  
+  <!-- Analysis Graph -->
+  <path d="M100 220L130 200L160 210L190 190L220 200L250 180L280 190" stroke="#3b82f6" stroke-width="3" fill="none"/>
+  <circle cx="100" cy="220" r="3" fill="#3b82f6"/>
+  <circle cx="130" cy="200" r="3" fill="#3b82f6"/>
+  <circle cx="160" cy="210" r="3" fill="#3b82f6"/>
+  <circle cx="190" cy="190" r="3" fill="#3b82f6"/>
+  <circle cx="220" cy="200" r="3" fill="#3b82f6"/>
+  <circle cx="250" cy="180" r="3" fill="#3b82f6"/>
+  <circle cx="280" cy="190" r="3" fill="#3b82f6"/>
+  
+  <!-- Title -->
+  <text x="200" y="280" font-family="Inter, Arial" font-size="20" font-weight="bold" fill="#1e293b" text-anchor="middle">
+    Risk Analysis
+  </text>
+</svg>
