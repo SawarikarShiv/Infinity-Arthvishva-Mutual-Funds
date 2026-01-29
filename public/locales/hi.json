@@ -1,0 +1,51 @@
+{
+  "common": {
+    "appName": "इन्फिनिटी अर्थविश्व म्यूचुअल फंड्स",
+    "tagline": "स्मार्ट निवेश प्लेटफॉर्म",
+    "loading": "लोड हो रहा है...",
+    "error": "एक त्रुटि हुई",
+    "success": "सफलता!",
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "delete": "हटाएं",
+    "edit": "संपादित करें",
+    "view": "देखें",
+    "search": "खोजें",
+    "filter": "फ़िल्टर",
+    "sort": "क्रमबद्ध करें",
+    "back": "वापस",
+    "next": "अगला",
+    "previous": "पिछला",
+    "submit": "जमा करें",
+    "reset": "रीसेट"
+  },
+  "navigation": {
+    "home": "होम",
+    "about": "हमारे बारे में",
+    "contact": "संपर्क करें",
+    "login": "लॉगिन",
+    "register": "पंजीकरण",
+    "dashboard": "डैशबोर्ड",
+    "portfolio": "पोर्टफोलियो",
+    "funds": "फंड",
+    "invest": "निवेश करें",
+    "sip": "एसआईपी कैलकुलेटर",
+    "reports": "रिपोर्ट्स",
+    "profile": "प्रोफाइल",
+    "logout": "लॉगआउट"
+  },
+  "auth": {
+    "email": "ईमेल पता",
+    "password": "पासवर्ड",
+    "confirmPassword": "पासवर्ड की पुष्टि करें",
+    "rememberMe": "मुझे याद रखें",
+    "forgotPassword": "पासवर्ड भूल गए?",
+    "resetPassword": "पासवर्ड रीसेट करें",
+    "noAccount": "खाता नहीं है?",
+    "hasAccount": "पहले से खाता है?",
+    "loginSuccess": "लॉगिन सफल!",
+    "registerSuccess": "पंजीकरण सफल!",
+    "invalidCredentials": "अमान्य ईमेल या पासवर्ड",
+    "passwordRequirements": "पासवर्ड कम से कम 8 अक्षरों का होना चाहिए"
+  }
+}
