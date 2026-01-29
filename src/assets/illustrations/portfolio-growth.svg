@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#f0f9ff"/>
+  
+  <!-- Pie Chart -->
+  <circle cx="150" cy="150" r="80" fill="#dbeafe"/>
+  
+  <!-- Pie Slices -->
+  <path d="M150 70 L150 150 A80 80 0 0 1 210 110 Z" fill="#3b82f6"/>
+  <path d="M150 150 L210 110 A80 80 0 0 1 230 190 Z" fill="#60a5fa"/>
+  <path d="M150 150 L230 190 A80 80 0 1 1 150 70 Z" fill="#93c5fd"/>
+  
+  <!-- Center circle -->
+  <circle cx="150" cy="150" r="40" fill="white"/>
+  
+  <!-- Legend -->
+  <rect x="280" y="100" width="20" height="20" rx="4" fill="#3b82f6"/>
+  <text x="310" y="115" font-family="Inter, Arial" font-size="14" fill="#374151">Equity (45%)</text>
+  
+  <rect x="280" y="130" width="20" height="20" rx="4" fill="#60a5fa"/>
+  <text x="310" y="145" font-family="Inter, Arial" font-size="14" fill="#374151">Debt (35%)</text>
+  
+  <rect x="280" y="160" width="20" height="20" rx="4" fill="#93c5fd"/>
+  <text x="310" y="175" font-family="Inter, Arial" font-size="14" fill="#374151">Hybrid (20%)</text>
+  
+  <!-- Growth Arrow -->
+  <path d="M100 250L140 210L180 250" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M140 210L140 170" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4"/>
+  
+  <!-- Percentage -->
+  <text x="140" y="160" font-family="Inter, Arial" font-size="16" font-weight="bold" fill="#065f46" text-anchor="middle">
+    +24.5%
+  </text>
+  
+  <!-- Title -->
+  <text x="200" y="280" font-family="Inter, Arial" font-size="20" font-weight="bold" fill="#1e293b" text-anchor="middle">
+    Portfolio Growth
+  </text>
+</svg>
