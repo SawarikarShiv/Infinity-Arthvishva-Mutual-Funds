@@ -1,7 +1,6 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { clsx } from 'clsx';
-import { CheckIcon } from '@heroicons/react/24/solid';
 
 const Checkbox = forwardRef(({
   label,
@@ -16,12 +15,34 @@ const Checkbox = forwardRef(({
   containerClassName = '',
   labelClassName = '',
   ...props
-}, ref) => {
+}, forwardedRef) => {
+  // Use a local ref that we can combine with forwardedRef
+  const localRef = useRef(null);
+  
+  // Combine local ref with forwarded ref
+  const setRef = (element) => {
+    localRef.current = element;
+    
+    // Handle forwarded ref
+    if (typeof forwardedRef === 'function') {
+      forwardedRef(element);
+    } else if (forwardedRef) {
+      forwardedRef.current = element;
+    }
+  };
+  
+  // Handle indeterminate state
+  useEffect(() => {
+    if (localRef.current) {
+      localRef.current.indeterminate = indeterminate;
+    }
+  }, [indeterminate]);
+
   return (
     <div className={clsx('flex items-start', containerClassName)}>
       <div className="flex items-center h-5">
         <input
-          ref={ref}
+          ref={setRef}
           id={name}
           name={name}
           type="checkbox"
@@ -38,11 +59,6 @@ const Checkbox = forwardRef(({
           )}
           aria-invalid={!!error}
           aria-describedby={error ? `${name}-error` : undefined}
-          ref={(el) => {
-            if (el && indeterminate) {
-              el.indeterminate = true;
-            }
-          }}
           {...props}
         />
       </div>
@@ -92,4 +108,3 @@ Checkbox.propTypes = {
 Checkbox.displayName = 'Checkbox';
 
 export default Checkbox;
-EOF
