@@ -105,6 +105,7 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, './src/assets'),
       '@styles': path.resolve(__dirname, './src/styles'),
     },
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   
   // CSS configuration
@@ -140,6 +141,18 @@ export default defineConfig({
       'date-fns',
     ],
     exclude: ['@mui/x-date-pickers'],
+    esbuildOptions: {
+      loader: {
+        '.js': 'jsx',
+      },
+    },
+  },
+  
+  // Esbuild configuration
+  esbuild: {
+    loader: 'jsx',
+    include: /src\/.*\.jsx?$/,
+    exclude: [],
   },
   
   // Environment variables
