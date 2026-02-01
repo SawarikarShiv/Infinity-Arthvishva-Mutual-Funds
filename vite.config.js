@@ -137,20 +137,11 @@ export default defineConfig({
     // Global CSS imports
     preprocessorOptions: {
       scss: {
-        // IMPORTANT: This injects global variables/mixins for ALL Sass files
-        // This fixes the @use/@import ordering issues
+        // ONLY inject variables and mixins, NOT sass modules
         additionalData: `
-          @use "sass:math";
-          @use "sass:map";
           @use "@/styles/variables.scss" as *;
           @use "@/styles/mixins.scss" as *;
         `,
-        
-        // Modern Sass compiler settings
-        api: 'modern-compiler',
-        
-        // Silence deprecation warnings
-        silenceDeprecations: ['import', 'slash-div'],
       },
     },
     
