@@ -1,6 +1,727 @@
-// Main SCSS Entry Point
-@import 'variables';
-@import 'mixins';
-@import 'animations';
-@import 'typography';
-@import 'global';
+// ============================================================================
+// Styles Entry Point
+// Main SCSS file that imports all partials and sets up the application styles
+// ============================================================================
+
+// ============================================================================
+// Import Sass Modules (MUST BE FIRST!)
+// ============================================================================
+
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:color';
+@use 'sass:string';
+
+// ============================================================================
+// Import Application Partials
+// ============================================================================
+
+@use './variables' as *;
+@use './mixins' as *;
+@use './animations' as *;
+@use './typography' as *;
+
+// ============================================================================
+// CSS Custom Properties (CSS Variables) - Global Theme
+// ============================================================================
+
+:root {
+  // Color System - Light Theme (Default)
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
+  
+  --color-secondary-50: #f8fafc;
+  --color-secondary-100: #f1f5f9;
+  --color-secondary-200: #e2e8f0;
+  --color-secondary-300: #cbd5e1;
+  --color-secondary-400: #94a3b8;
+  --color-secondary-500: #64748b;
+  --color-secondary-600: #475569;
+  --color-secondary-700: #334155;
+  --color-secondary-800: #1e293b;
+  --color-secondary-900: #0f172a;
+  --color-secondary-950: #020617;
+  
+  --color-success-50: #ecfdf5;
+  --color-success-100: #d1fae5;
+  --color-success-200: #a7f3d0;
+  --color-success-300: #6ee7b7;
+  --color-success-400: #34d399;
+  --color-success-500: #10b981;
+  --color-success-600: #059669;
+  --color-success-700: #047857;
+  --color-success-800: #065f46;
+  --color-success-900: #064e3b;
+  --color-success-950: #022c22;
+  
+  --color-danger-50: #fef2f2;
+  --color-danger-100: #fee2e2;
+  --color-danger-200: #fecaca;
+  --color-danger-300: #fca5a5;
+  --color-danger-400: #f87171;
+  --color-danger-500: #ef4444;
+  --color-danger-600: #dc2626;
+  --color-danger-700: #b91c1c;
+  --color-danger-800: #991b1b;
+  --color-danger-900: #7f1d1d;
+  --color-danger-950: #450a0a;
+  
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+  --color-warning-950: #451a03;
+  
+  --color-info-50: #ecfeff;
+  --color-info-100: #cffafe;
+  --color-info-200: #a5f3fc;
+  --color-info-300: #67e8f9;
+  --color-info-400: #22d3ee;
+  --color-info-500: #06b6d4;
+  --color-info-600: #0891b2;
+  --color-info-700: #0e7490;
+  --color-info-800: #155e75;
+  --color-info-900: #164e63;
+  --color-info-950: #083344;
+  
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+  --color-neutral-950: #0a0a0a;
+  
+  // Theme Colors
+  --color-background: #ffffff;
+  --color-background-card: #ffffff;
+  --color-background-elevated: #f9fafb;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-muted: #9ca3af;
+  --color-text-inverse: #ffffff;
+  --color-border: #e5e7eb;
+  --color-border-light: #f3f4f6;
+  --color-border-dark: #d1d5db;
+  --color-border-focus: #3b82f6;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  
+  // Typography
+  --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family-mono: 'SF Mono', Monaco, 'Cascadia Mono', monospace;
+  --font-size-xs: 0.75rem;     // 12px
+  --font-size-sm: 0.875rem;    // 14px
+  --font-size-base: 1rem;      // 16px
+  --font-size-lg: 1.125rem;    // 18px
+  --font-size-xl: 1.25rem;     // 20px
+  --font-size-2xl: 1.5rem;     // 24px
+  --font-size-3xl: 1.875rem;   // 30px
+  --font-size-4xl: 2.25rem;    // 36px
+  --font-size-5xl: 3rem;       // 48px
+  --font-size-6xl: 3.75rem;    // 60px
+  
+  // Spacing
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;    // 4px
+  --spacing-2: 0.5rem;     // 8px
+  --spacing-3: 0.75rem;    // 12px
+  --spacing-4: 1rem;       // 16px
+  --spacing-5: 1.25rem;    // 20px
+  --spacing-6: 1.5rem;     // 24px
+  --spacing-8: 2rem;       // 32px
+  --spacing-10: 2.5rem;    // 40px
+  --spacing-12: 3rem;      // 48px
+  --spacing-16: 4rem;      // 64px
+  --spacing-20: 5rem;      // 80px
+  --spacing-24: 6rem;      // 96px
+  --spacing-32: 8rem;      // 128px
+  
+  // Border Radius
+  --radius-none: 0;
+  --radius-sm: 0.125rem;   // 2px
+  --radius-base: 0.25rem;  // 4px
+  --radius-md: 0.375rem;   // 6px
+  --radius-lg: 0.5rem;     // 8px
+  --radius-xl: 0.75rem;    // 12px
+  --radius-2xl: 1rem;      // 16px
+  --radius-3xl: 1.5rem;    // 24px
+  --radius-full: 9999px;
+  
+  // Shadows
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-2xl: 0 50px 100px -20px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  
+  // Transitions
+  --transition-duration-100: 100ms;
+  --transition-duration-150: 150ms;
+  --transition-duration-200: 200ms;
+  --transition-duration-300: 300ms;
+  --transition-duration-500: 500ms;
+  --transition-timing-ease: ease;
+  --transition-timing-ease-in: ease-in;
+  --transition-timing-ease-out: ease-out;
+  --transition-timing-ease-in-out: ease-in-out;
+  
+  // Z-Index
+  --z-index-0: 0;
+  --z-index-10: 10;
+  --z-index-20: 20;
+  --z-index-30: 30;
+  --z-index-40: 40;
+  --z-index-50: 50;
+  --z-index-auto: auto;
+  
+  // Layout
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+  --container-3xl: 1792px;
+  --container-4xl: 2048px;
+  --container-5xl: 2304px;
+  --container-6xl: 2560px;
+  --container-7xl: 2880px;
+}
+
+// ============================================================================
+// Dark Theme
+// ============================================================================
+
+[data-theme="dark"] {
+  --color-background: #111827;
+  --color-background-card: #1f2937;
+  --color-background-elevated: #374151;
+  --color-text-primary: #f9fafb;
+  --color-text-secondary: #d1d5db;
+  --color-text-muted: #9ca3af;
+  --color-text-inverse: #111827;
+  --color-border: #374151;
+  --color-border-light: #4b5563;
+  --color-border-dark: #1f2937;
+  --color-border-focus: #60a5fa;
+  --color-shadow: rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-background: #111827;
+    --color-background-card: #1f2937;
+    --color-background-elevated: #374151;
+    --color-text-primary: #f9fafb;
+    --color-text-secondary: #d1d5db;
+    --color-text-muted: #9ca3af;
+    --color-text-inverse: #111827;
+    --color-border: #374151;
+    --color-border-light: #4b5563;
+    --color-border-dark: #1f2937;
+    --color-border-focus: #60a5fa;
+    --color-shadow: rgba(0, 0, 0, 0.3);
+  }
+}
+
+// ============================================================================
+// Base CSS Reset & Global Styles
+// ============================================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-family-sans);
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  @include reduced-motion {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: 
+    background-color var(--transition-duration-300) var(--transition-timing-ease),
+    color var(--transition-duration-300) var(--transition-timing-ease);
+  
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+a {
+  color: var(--color-primary-600);
+  text-decoration: none;
+  transition: color var(--transition-duration-200) var(--transition-timing-ease);
+  
+  &:hover {
+    color: var(--color-primary-700);
+    text-decoration: underline;
+  }
+}
+
+ul, ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin: var(--spacing-6) 0;
+}
+
+// ============================================================================
+// Typography
+// ============================================================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: var(--spacing-4);
+}
+
+h1 {
+  font-size: var(--font-size-4xl);
+  @include media-breakpoint-down(md) {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+h2 {
+  font-size: var(--font-size-3xl);
+  @include media-breakpoint-down(md) {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+  @include media-breakpoint-down(md) {
+    font-size: var(--font-size-xl);
+  }
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+}
+
+h5 {
+  font-size: var(--font-size-lg);
+}
+
+h6 {
+  font-size: var(--font-size-base);
+}
+
+p {
+  margin-bottom: var(--spacing-4);
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+small {
+  font-size: var(--font-size-sm);
+}
+
+code {
+  font-family: var(--font-family-mono);
+  background-color: var(--color-neutral-100);
+  padding: 0.125rem 0.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875em;
+}
+
+pre {
+  font-family: var(--font-family-mono);
+  background-color: var(--color-neutral-100);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  margin-bottom: var(--spacing-4);
+  
+  code {
+    background: none;
+    padding: 0;
+  }
+}
+
+blockquote {
+  border-left: 4px solid var(--color-border);
+  padding-left: var(--spacing-4);
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: var(--spacing-4);
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+// ============================================================================
+// Focus & Accessibility
+// ============================================================================
+
+:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.skip-to-main {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--color-primary-600);
+  color: var(--color-text-inverse);
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--radius-md);
+  z-index: var(--z-index-50);
+  text-decoration: none;
+  
+  &:focus {
+    top: var(--spacing-2);
+    left: var(--spacing-2);
+  }
+}
+
+.sr-only {
+  @include visually-hidden;
+}
+
+// ============================================================================
+// Scrollbar
+// ============================================================================
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-400);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-background);
+  
+  &:hover {
+    background: var(--color-neutral-500);
+  }
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--color-neutral-600);
+}
+
+// Firefox
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-neutral-400) var(--color-background);
+}
+
+// ============================================================================
+// Container & Layout
+// ============================================================================
+
+.container {
+  width: 100%;
+  max-width: var(--container-7xl);
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+  
+  @include media-breakpoint-up(sm) {
+    padding: 0 var(--spacing-6);
+  }
+  
+  @include media-breakpoint-up(lg) {
+    padding: 0 var(--spacing-8);
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 0 var(--spacing-4);
+  
+  @include media-breakpoint-up(sm) {
+    padding: 0 var(--spacing-6);
+  }
+}
+
+// ============================================================================
+// Import Utility Classes
+// ============================================================================
+
+// Import grid utilities
+@import './utilities/grid';
+@import './utilities/spacing';
+@import './utilities/display';
+@import './utilities/flex';
+@import './utilities/position';
+@import './utilities/borders';
+@import './utilities/backgrounds';
+@import './utilities/text';
+@import './utilities/sizing';
+@import './utilities/interactivity';
+
+// ============================================================================
+// Import Component Styles
+// ============================================================================
+
+// Base components
+@import './components/buttons';
+@import './components/forms';
+@import './components/cards';
+@import './components/tables';
+@import './components/alerts';
+@import './components/badges';
+@import './components/modals';
+@import './components/loaders';
+
+// Layout components
+@import './components/layout/header';
+@import './components/layout/sidebar';
+@import './components/layout/footer';
+@import './components/layout/navigation';
+
+// Feature-specific components
+@import './components/features/dashboard';
+@import './components/features/portfolio';
+@import './components/features/funds';
+@import './components/features/transactions';
+
+// ============================================================================
+// Import Page Styles
+// ============================================================================
+
+@import './pages/home';
+@import './pages/dashboard';
+@import './pages/auth';
+@import './pages/advisor';
+@import './pages/admin';
+
+// ============================================================================
+// Utility Classes (Inline)
+// ============================================================================
+
+// Text alignment
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+// Text transform
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+.normal-case { text-transform: none; }
+
+// Font weight
+.font-thin { font-weight: 100; }
+.font-extralight { font-weight: 200; }
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+.font-black { font-weight: 900; }
+
+// Width & Height
+.w-full { width: 100%; }
+.w-screen { width: 100vw; }
+.w-min { width: min-content; }
+.w-max { width: max-content; }
+.w-fit { width: fit-content; }
+
+.h-full { height: 100%; }
+.h-screen { height: 100vh; }
+.h-min { height: min-content; }
+.h-max { height: max-content; }
+.h-fit { height: fit-content; }
+
+// Min/Max dimensions
+.min-w-0 { min-width: 0; }
+.min-w-full { min-width: 100%; }
+.min-h-0 { min-height: 0; }
+.min-h-full { min-height: 100%; }
+.min-h-screen { min-height: 100vh; }
+
+.max-w-none { max-width: none; }
+.max-w-full { max-width: 100%; }
+.max-w-screen-sm { max-width: 640px; }
+.max-w-screen-md { max-width: 768px; }
+.max-w-screen-lg { max-width: 1024px; }
+.max-w-screen-xl { max-width: 1280px; }
+.max-w-screen-2xl { max-width: 1536px; }
+
+.max-h-none { max-height: none; }
+.max-h-full { max-height: 100%; }
+.max-h-screen { max-height: 100vh; }
+
+// ============================================================================
+// Animation Classes
+// ============================================================================
+
+.animate-spin {
+  @include spin;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-bounce {
+  @include bounce;
+}
+
+.animate-fade-in {
+  @include fade-in;
+}
+
+.animate-slide-in-up {
+  @include slide-in(up);
+}
+
+.animate-slide-in-down {
+  @include slide-in(down);
+}
+
+.animate-slide-in-left {
+  @include slide-in(left);
+}
+
+.animate-slide-in-right {
+  @include slide-in(right);
+}
+
+// ============================================================================
+// Print Styles
+// ============================================================================
+
+@include print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000 !important;
+    background: #fff !important;
+  }
+  
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+  
+  table {
+    page-break-inside: avoid;
+  }
+  
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 90%;
+  }
+  
+  nav, 
+  footer, 
+  button, 
+  .btn, 
+  .navbar, 
+  .sidebar, 
+  .modal, 
+  .toast,
+  .tooltip {
+    display: none !important;
+  }
+}
