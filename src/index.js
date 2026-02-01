@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux'; // Added missing Provider
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 import App from './App';
 
+// Import Global Styles (Vite needs the CSS entry point here)
+import './styles/global.scss';
+
 // Import i18n configuration
-import './i18n';
+// NOTE: If you get "Failed to resolve", check if this is in ./config/i18n instead
+import "./utils/i18n"; 
 
 // Import store configuration
 import { store } from './store';
