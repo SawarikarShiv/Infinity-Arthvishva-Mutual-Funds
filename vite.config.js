@@ -103,7 +103,7 @@ export default defineConfig({
         },
       },
       // External dependencies that shouldn't be bundled
-      external: [],
+      external: ['@fvilers/disable-react-devtools'], // ADDED: External package
     },
     
     // Chunk size warning limit (in kB)
