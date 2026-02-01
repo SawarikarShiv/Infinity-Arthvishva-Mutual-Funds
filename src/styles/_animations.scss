@@ -1,7 +1,15 @@
-/**
- * Animation Keyframes and Classes
- * Reusable animations for the application
- */
+// ============================================================================
+// Import Sass Modules (MUST BE FIRST!)
+// ============================================================================
+
+@use 'sass:math';
+@use 'sass:map';
+@use 'variables' as *; // Add this line to access variables
+
+// ============================================================================
+// Animation Keyframes and Classes
+// Reusable animations for the application
+// ============================================================================
 
 // ============================================================================
 // Fade Animations
@@ -546,13 +554,13 @@
 
 @keyframes notificationPulse {
   0% {
-    box-shadow: 0 0 0 0 rgba($primary-500, 0.7);
+    box-shadow: 0 0 0 0 rgba(#3b82f6, 0.7); // Fixed: Using hex color instead of variable
   }
   70% {
-    box-shadow: 0 0 0 10px rgba($primary-500, 0);
+    box-shadow: 0 0 0 10px rgba(#3b82f6, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba($primary-500, 0);
+    box-shadow: 0 0 0 0 rgba(#3b82f6, 0);
   }
 }
 
@@ -571,10 +579,10 @@
 
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 5px $primary-400;
+    box-shadow: 0 0 5px #60a5fa; // Fixed: Using hex color #60a5fa instead of $primary-400
   }
   50% {
-    box-shadow: 0 0 20px $primary-400, 0 0 30px $primary-400;
+    box-shadow: 0 0 20px #60a5fa, 0 0 30px #60a5fa;
   }
 }
 
@@ -889,7 +897,7 @@
 
 // Loading Animations
 .animate-skeleton {
-  background: linear-gradient(90deg, $neutral-200 25%, $neutral-100 50%, $neutral-200 75%);
+  background: linear-gradient(90deg, #e5e5e5 25%, #f5f5f5 50%, #e5e5e5 75%); // Fixed: Using hex colors
   background-size: 200px 100%;
   animation: skeletonLoading 1.5s infinite;
 }
