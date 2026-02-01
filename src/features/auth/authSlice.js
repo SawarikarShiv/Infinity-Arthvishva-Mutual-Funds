@@ -75,6 +75,20 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    setCredentials: (state, action) => {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.isAuthenticated = true;
+      localStorage.setItem('token', action.payload.token);
+      localStorage.setItem('user', JSON.stringify(action.payload.user));
+    },
+    clearCredentials: (state) => {
+      state.user = null;
+      state.token = null;
+      state.isAuthenticated = false;
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+    },
     clearError: (state) => {
       state.error = null;
     },
@@ -85,6 +99,17 @@ const authSlice = createSlice({
     updateUser: (state, action) => {
       state.user = { ...state.user, ...action.payload };
       localStorage.setItem('user', JSON.stringify(state.user));
+    },
+    checkAuth: (state) => {
+      const token = authService.getToken();
+      const user = authService.getCurrentUser();
+      state.user = user;
+      state.token = token;
+      state.isAuthenticated = !!(token && user);
+    },
+    refreshToken: (state, action) => {
+      state.token = action.payload.token;
+      localStorage.setItem('token', action.payload.token);
     }
   },
   extraReducers: (builder) => {
@@ -182,9 +207,16 @@ export const selectAuthError = (state) => state.auth.error;
 export const selectAuthSuccess = (state) => state.auth.success;
 export const selectAuthMessage = (state) => state.auth.message;
 
-// Actions
-export const { clearError, clearSuccess, updateUser } = authSlice.actions;
+// Export actions including the new ones
+export const { 
+  clearError, 
+  clearSuccess, 
+  updateUser, 
+  setCredentials, 
+  clearCredentials, 
+  checkAuth, 
+  refreshToken 
+} = authSlice.actions;
 
 // Reducer
 export default authSlice.reducer;
-EOF
