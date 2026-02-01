@@ -1,3 +1,5 @@
+// vite.config.js - UPDATED (remove external entries)
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
@@ -13,7 +15,7 @@ export default defineConfig({
   
   // ADDED: Global defines to handle process.env issues
   define: {
-    'process.env': {},
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     'global': {},
   },
   
@@ -102,8 +104,8 @@ export default defineConfig({
           return `assets/[ext]/[name]-[hash][extname]`;
         },
       },
-      // External dependencies that shouldn't be bundled
-      external: ['@fvilers/disable-react-devtools'], // ADDED: External package
+      // External dependencies that shouldn't be bundled - MAKE SURE THIS IS EMPTY
+      external: [],
     },
     
     // Chunk size warning limit (in kB)
@@ -177,6 +179,7 @@ export default defineConfig({
       'react-i18next',
       'react-hook-form',
       'yup',
+      'react-toastify', // ADD THIS
     ],
     exclude: [],
     esbuildOptions: {
