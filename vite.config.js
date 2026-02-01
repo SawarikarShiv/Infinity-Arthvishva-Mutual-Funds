@@ -11,6 +11,12 @@ const __dirname = path.dirname(__filename);
 export default defineConfig({
   plugins: [react()],
   
+  // ADDED: Global defines to handle process.env issues
+  define: {
+    'process.env': {},
+    'global': {},
+  },
+  
   // Base public path for the app
   base: '/',
   
