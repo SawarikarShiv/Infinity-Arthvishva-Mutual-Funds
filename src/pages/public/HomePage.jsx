@@ -1,79 +1,43 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import MainLayout from '@components/layouts/MainLayout';
-import { 
-  HeroSection, 
-  StatsSection, 
-  FundsSection, 
-  TestimonialsSection, 
-  InvestmentCalculator, 
-  CTASection 
-} from '@features/public/Home';
-import { fetchHomeStats, fetchFeaturedFunds, fetchTestimonials } from '@features/public/Home/homeSlice';
-import Loader from '@components/common/Loader/Spinner';
+import { useTranslation } from 'react-i18next'
 
-const HomePage = () => {
-  const dispatch = useDispatch();
-  const { stats, featuredFunds, testimonials, isLoading, error } = useSelector(state => state.home);
-
-  useEffect(() => {
-    dispatch(fetchHomeStats());
-    dispatch(fetchFeaturedFunds());
-    dispatch(fetchTestimonials());
-  }, [dispatch]);
-
-  if (isLoading && !stats) {
-    return (
-      <MainLayout>
-        <div className="min-h-screen flex items-center justify-center">
-          <Loader size="lg" />
-        </div>
-      </MainLayout>
-    );
-  }
-
-  if (error) {
-    return (
-      <MainLayout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <div className="text-red-500 text-2xl mb-4">⚠️</div>
-            <h2 className="text-xl font-semibold text-gray-800 mb-2">Something went wrong</h2>
-            <p className="text-gray-600">{error}</p>
-            <button 
-              onClick={() => window.location.reload()}
-              className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-            >
-              Retry
-            </button>
-          </div>
-        </div>
-      </MainLayout>
-    );
-  }
+function HomePage() {
+  const { t } = useTranslation()
 
   return (
-    <MainLayout>
-      {/* Hero Section */}
-      <HeroSection />
-      
-      {/* Stats Section */}
-      <StatsSection stats={stats} />
-      
-      {/* Funds Section */}
-      <FundsSection funds={featuredFunds} />
-      
-      {/* Testimonials Section */}
-      <TestimonialsSection testimonials={testimonials} />
-      
-      {/* Investment Calculator */}
-      <InvestmentCalculator />
-      
-      {/* CTA Section */}
-      <CTASection />
-    </MainLayout>
-  );
-};
+    <div className="py-12">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold mb-4 text-gradient">
+            {t('welcome')} to Infinity Arthvishva
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400">
+            Your trusted partner in mutual fund investments
+          </p>
+        </div>
 
-export default HomePage;
-EOF
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="card-hover">
+            <h3 className="text-xl font-semibold mb-4">For Investors</h3>
+            <p className="text-gray-600 dark:text-gray-400">
+              Track your portfolio, explore funds, and plan your financial goals.
+            </p>
+          </div>
+          <div className="card-hover">
+            <h3 className="text-xl font-semibold mb-4">For Advisors</h3>
+            <p className="text-gray-600 dark:text-gray-400">
+              Manage clients, provide recommendations, and grow your business.
+            </p>
+          </div>
+          <div className="card-hover">
+            <h3 className="text-xl font-semibold mb-4">Secure & Reliable</h3>
+            <p className="text-gray-600 dark:text-gray-400">
+              Bank-level security with real-time updates and comprehensive reporting.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default HomePage
