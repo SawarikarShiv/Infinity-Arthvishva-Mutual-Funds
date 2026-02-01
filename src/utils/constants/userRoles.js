@@ -343,3 +343,23 @@ export const getNextKYCStatus = (currentStatus) => {
   
   return statusFlow[currentStatus] || currentStatus;
 };
+
+// Get current user's role from auth state or localStorage
+export const getUserRole = () => {
+  try {
+    // Try to get from localStorage first
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const user = JSON.parse(userData);
+      if (user && user.role) {
+        return user.role;
+      }
+    }
+    
+    // Fallback to default role
+    return 'investor';
+  } catch (error) {
+    console.error('Error getting user role:', error);
+    return 'guest';
+  }
+};
