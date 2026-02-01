@@ -8,6 +8,7 @@ const initialState = {
   isMobile: false,
   sidebarOpen: true,
   initialized: false,
+  toast: null, // Add toast state
 }
 
 const appSlice = createSlice({
@@ -52,6 +53,27 @@ const appSlice = createSlice({
       // Mark as initialized
       state.initialized = true
     },
+    // Missing reducers
+    showToast: (state, action) => {
+      state.toast = action.payload
+    },
+    clearToast: (state) => {
+      state.toast = null
+    },
+    initializeAppState: (state) => {
+      // Initialize app state from localStorage
+      const savedLanguage = localStorage.getItem('language') || 'en'
+      const savedTheme = localStorage.getItem('theme') || 'light'
+      
+      state.language = savedLanguage
+      state.isMobile = window.innerWidth < 768
+      state.initialized = true
+      
+      // Apply theme if needed
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark')
+      }
+    }
   },
 })
 
@@ -65,6 +87,9 @@ export const {
   toggleSidebar,
   setSidebarOpen,
   initializeApp,
+  showToast, // Export the new action
+  clearToast,
+  initializeAppState, // Export the new action
 } = appSlice.actions
 
 export default appSlice.reducer
