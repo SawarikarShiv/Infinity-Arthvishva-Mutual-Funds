@@ -305,18 +305,6 @@
                 }
             }
         });
-        
-        // Web Vitals
-        if (typeof window !== 'undefined' && window.gtag) {
-            // Import web-vitals if needed for Core Web Vitals tracking
-            import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-                getCLS(console.log);
-                getFID(console.log);
-                getFCP(console.log);
-                getLCP(console.log);
-                getTTFB(console.log);
-            });
-        }
     </script>
     
     <!-- External scripts (only in production) -->
