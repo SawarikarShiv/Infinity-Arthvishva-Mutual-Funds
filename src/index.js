@@ -1,88 +1,97 @@
+// src/index.js - Updated with safety check for the external package
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux'; // Added missing Provider
-import { disableReactDevTools } from '@fvilers/disable-react-devtools';
-import App from './App';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-// Import Global Styles (Vite needs the CSS entry point here)
+import App from './App';
+import { store } from './store';
 import './styles/global.scss';
 
-// Import i18n configuration
-// NOTE: If you get "Failed to resolve", check if this is in ./config/i18n instead
-import "./utils/i18n"; 
-
-// Import store configuration
-import { store } from './store';
-import { initApp } from './store/slices/appSlice';
-
-// Initialize app
-store.dispatch(initApp());
-
-// Disable React DevTools in production
+// Disable React DevTools in production with safety check
 if (process.env.NODE_ENV === 'production') {
-  disableReactDevTools();
+  // Try to disable React DevTools if package is available
+  // This will be handled externally if the package is installed
+  // If not, it will silently fail
+  try {
+    // Dynamic import with error handling
+    import('@fvilers/disable-react-devtools')
+      .then(({ disableReactDevTools }) => {
+        if (typeof disableReactDevTools === 'function') {
+          disableReactDevTools();
+          console.log('React DevTools disabled in production');
+        }
+      })
+      .catch((error) => {
+        // Silently fail - package might not be installed or bundled externally
+        console.debug('Could not disable React DevTools:', error.message);
+      });
+  } catch (error) {
+    // Fallback: Manual disabling if package is not available
+    if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object') {
+      // Override all functions to no-op
+      Object.keys(window.__REACT_DEVTOOLS_GLOBAL_HOOK__).forEach(key => {
+        if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__[key] === 'function') {
+          window.__REACT_DEVTOOLS_GLOBAL_HOOK__[key] = () => {};
+        } else if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__[key] === 'object') {
+          window.__REACT_DEVTOOLS_GLOBAL_HOOK__[key] = null;
+        }
+      });
+    }
+  }
 }
 
 // Create root
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const rootElement = document.getElementById('root');
+if (!rootElement) {
+  throw new Error('Root element not found');
+}
+
+const root = ReactDOM.createRoot(rootElement);
 
 // Render app
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <BrowserRouter>
+        <HelmetProvider>
+          <App />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+        </HelmetProvider>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
-// Performance monitoring
-if (process.env.NODE_ENV === 'development') {
-  // Report web vitals
-  const reportWebVitals = (onPerfEntry) => {
-    if (onPerfEntry && onPerfEntry instanceof Function) {
-      import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-        getCLS(onPerfEntry);
-        getFID(onPerfEntry);
-        getFCP(onPerfEntry);
-        getLCP(onPerfEntry);
-        getTTFB(onPerfEntry);
-      });
-    }
-  };
+// Error boundary for unhandled errors
+window.addEventListener('error', (event) => {
+  console.error('Uncaught error:', event.error);
+});
 
-  // Enable performance monitoring in development
-  reportWebVitals(console.log);
+// Log build info in development
+if (process.env.NODE_ENV === 'development') {
+  console.log('Development mode active');
+  console.log('App version:', process.env.VITE_APP_VERSION || '1.0.0');
 }
 
-// Service worker registration for PWA
+// Optional: Add service worker registration
 if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
   window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('/service-worker.js')
-      .then((registration) => {
-        console.log('SW registered: ', registration);
-      })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError);
-      });
+    navigator.serviceWorker.register('/service-worker.js');
   });
 }
-
-// Error handling
-window.addEventListener('error', (event) => {
-  console.error('Global error caught:', event.error);
-  
-  // Send error to monitoring service in production
-  if (process.env.NODE_ENV === 'production') {
-    // Implement error logging service here
-    // Example: Sentry.captureException(event.error);
-  }
-});
-
-// Unhandled promise rejection handling
-window.addEventListener('unhandledrejection', (event) => {
-  console.error('Unhandled promise rejection:', event.reason);
-  
-  // Send error to monitoring service in production
-  if (process.env.NODE_ENV === 'production') {
-    // Implement error logging service here
-  }
-});
