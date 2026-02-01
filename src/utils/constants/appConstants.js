@@ -10,6 +10,11 @@ export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://api.i
 export const API_TIMEOUT = 30000; // 30 seconds
 export const API_RETRY_ATTEMPTS = 3;
 
+// Session Configuration
+export const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
+export const SESSION_CHECK_INTERVAL = 60 * 1000; // 1 minute
+export const SESSION_WARNING_TIME = 5 * 60 * 1000; // 5 minutes before timeout
+  
 // Pagination
 export const DEFAULT_PAGE_SIZE = 10;
 export const PAGE_SIZE_OPTIONS = [10, 25, 50, 100];
