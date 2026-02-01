@@ -1,40 +1,369 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Infinity Arthvishva Mutual Funds - Smart Investment Platform">
-    <meta name="keywords" content="mutual funds, investment, portfolio, SIP, equity funds, debt funds">
-    <meta name="author" content="Infinity Arthvishva">
-    
-    <!-- Favicon: Removed /public/ -->
-    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
-    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
-    
-    <!-- Fonts Preload: Removed /public/ -->
-    <link rel="preload" href="/assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/assets/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#2563eb">
     
-    <meta property="og:title" content="Infinity Arthvishva Mutual Funds">
-    <meta property="og:description" content="Smart Investment Platform for Mutual Funds">
-    <meta property="og:image" content="/assets/images/og-image.jpg">
-    <meta property="og:url" content="https://infinity-arthvishva.com">
-    <meta property="og:type" content="website">
+    <!-- Primary Meta Tags -->
+    <title>Infinity Arthvishva | Smart Mutual Fund Investment Platform</title>
+    <meta name="title" content="Infinity Arthvishva | Smart Mutual Fund Investment Platform">
+    <meta name="description" content="WealthForge - Your trusted partner for smart mutual fund investments, portfolio management, and financial growth. Start investing with experts today.">
     
-    <title>Infinity Arthvishva Mutual Funds | Smart Investment Platform</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but Infinity Arthvishva Mutual Funds doesn't work properly without JavaScript enabled.</strong>
-    </noscript>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://infinityarthvishva.com/">
+    <meta property="og:title" content="Infinity Arthvishva | Smart Mutual Fund Investment Platform">
+    <meta property="og:description" content="WealthForge - Your trusted partner for smart mutual fund investments, portfolio management, and financial growth. Start investing with experts today.">
+    <meta property="og:image" content="/assets/images/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://infinityarthvishva.com/">
+    <meta property="twitter:title" content="Infinity Arthvishva | Smart Mutual Fund Investment Platform">
+    <meta property="twitter:description" content="WealthForge - Your trusted partner for smart mutual fund investments, portfolio management, and financial growth. Start investing with experts today.">
+    <meta property="twitter:image" content="/assets/images/twitter-image.jpg">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.infinityarthvishva.com">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="/assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Fonts from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- iOS specific meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Infinity Arthvishva">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Android specific meta tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- PWA manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://infinityarthvishva.com/">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FinancialService",
+        "name": "Infinity Arthvishva",
+        "alternateName": "WealthForge",
+        "url": "https://infinityarthvishva.com",
+        "logo": "https://infinityarthvishva.com/assets/icons/logo.svg",
+        "sameAs": [
+            "https://www.facebook.com/infinityarthvishva",
+            "https://twitter.com/infinityarthvishva",
+            "https://www.instagram.com/infinityarthvishva",
+            "https://www.linkedin.com/company/infinityarthvishva"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-22-1234-5678",
+            "contactType": "customer service",
+            "availableLanguage": ["English", "Hindi", "Gujarati"]
+        },
+        "description": "Leading mutual fund investment platform providing expert guidance and portfolio management services.",
+        "foundingDate": "2023",
+        "founder": {
+            "@type": "Person",
+            "name": "Infinity Arthvishva Team"
+        },
+        "areaServed": {
+            "@type": "Country",
+            "name": "India"
+        }
+    }
+    </script>
+    
+    <!-- Critical CSS (inlined for performance) -->
+    <style>
+        /* Critical CSS: Styles needed for initial page load */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --border-color: #e5e7eb;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        #root {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Loading spinner */
+        .app-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-primary);
+            z-index: 9999;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        .loading-text {
+            margin-top: 20px;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Focus styles for accessibility */
+        :focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+        
+        /* Skip to main content link */
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            z-index: 10000;
+            text-decoration: none;
+        }
+        
+        .skip-to-main:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    
+    <!-- Loading screen -->
+    <div id="loading" class="app-loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading Infinity Arthvishva...</div>
+    </div>
+    
+    <!-- Main app container -->
     <div id="root"></div>
-    <!-- This path is correct as long as your file is in src/main.jsx -->
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    
+    <!-- Main content anchor for accessibility -->
+    <div id="main-content" tabindex="-1"></div>
+    
+    <!-- Service worker registration -->
+    <script>
+        // Register service worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js').catch(error => {
+                    console.log('ServiceWorker registration failed: ', error);
+                });
+            });
+        }
+        
+        // Remove loading screen when app is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hide loading screen after app initialization
+            const loadingElement = document.getElementById('loading');
+            if (loadingElement) {
+                // Show loading screen for minimum time for better UX
+                setTimeout(() => {
+                    loadingElement.style.opacity = '0';
+                    loadingElement.style.visibility = 'hidden';
+                    loadingElement.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+                    
+                    // Remove element after transition
+                    setTimeout(() => {
+                        loadingElement.remove();
+                    }, 300);
+                }, 1000); // Minimum 1 second loading screen
+            }
+        });
+        
+        // Theme detection
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const storedTheme = localStorage.getItem('wealthforge_theme');
+        
+        // Set initial theme
+        if (storedTheme === 'dark' || (!storedTheme && prefersDarkScheme.matches)) {
+            document.documentElement.classList.add('dark-theme');
+        }
+        
+        // Listen for theme changes
+        prefersDarkScheme.addEventListener('change', (e) => {
+            if (!localStorage.getItem('wealthforge_theme')) {
+                if (e.matches) {
+                    document.documentElement.classList.add('dark-theme');
+                } else {
+                    document.documentElement.classList.remove('dark-theme');
+                }
+            }
+        });
+        
+        // Error handling
+        window.addEventListener('error', (event) => {
+            console.error('Uncaught error:', event.error);
+            // You could send this to an error tracking service
+        });
+        
+        // Offline detection
+        window.addEventListener('offline', () => {
+            // Show offline notification
+            const offlineEvent = new CustomEvent('app-offline', { detail: { time: new Date() } });
+            window.dispatchEvent(offlineEvent);
+        });
+        
+        window.addEventListener('online', () => {
+            // Show online notification
+            const onlineEvent = new CustomEvent('app-online', { detail: { time: new Date() } });
+            window.dispatchEvent(onlineEvent);
+        });
+        
+        // Performance monitoring
+        window.addEventListener('load', () => {
+            // Measure page load performance
+            if ('performance' in window) {
+                const perfData = window.performance.getEntriesByType('navigation')[0];
+                if (perfData) {
+                    const loadTime = perfData.loadEventEnd - perfData.fetchStart;
+                    console.log(`Page loaded in ${loadTime}ms`);
+                    
+                    // Send to analytics if needed
+                    if (window.gtag) {
+                        window.gtag('event', 'timing_complete', {
+                            'name': 'page_load',
+                            'value': Math.round(loadTime),
+                            'event_category': 'Performance'
+                        });
+                    }
+                }
+            }
+        });
+        
+        // Web Vitals
+        if (typeof window !== 'undefined' && window.gtag) {
+            // Import web-vitals if needed for Core Web Vitals tracking
+            import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+                getCLS(console.log);
+                getFID(console.log);
+                getFCP(console.log);
+                getLCP(console.log);
+                getTTFB(console.log);
+            });
+        }
+    </script>
+    
+    <!-- External scripts (only in production) -->
+    <script type="module" src="/src/index.js"></script>
+    
+    <!-- Google Analytics (only in production) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXX', {
+            page_title: document.title,
+            page_location: window.location.href
+        });
+        
+        // Set gtag as global
+        window.gtag = gtag;
+    </script>
+    
+    <!-- Hotjar (only in production) -->
+    <!--
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:XXXXXX,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+    -->
+    
+    <!-- Crisp Chat (only in production) -->
+    <!--
+    <script type="text/javascript">
+        window.$crisp=[];
+        window.CRISP_WEBSITE_ID="XXXXX-XXXX-XXXX-XXXX-XXXXXXXXX";
+        (function(){
+            d=document;
+            s=d.createElement("script");
+            s.src="https://client.crisp.chat/l.js";
+            s.async=1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+    </script>
+    -->
+</body>
 </html>
