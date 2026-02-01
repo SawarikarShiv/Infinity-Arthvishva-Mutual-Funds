@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { clsx } from 'clsx';
-import { LogoMain } from '@/assets';
-import {
-  Bars3Icon,
-  XMarkIcon,
-  ChevronDownIcon,
-} from '@heroicons/react/24/outline';
+
+// Import logo
+import LogoMain from '../../assets/logos/logo-main.svg';
+
+// REMOVED Heroicons imports - using inline SVGs instead
+// Delete these lines:
+// import {
+//   Bars3Icon,
+//   XMarkIcon,
+//   ChevronDownIcon,
+// } from '@heroicons/react/24/outline';
 
 const MainLayout = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -53,6 +58,30 @@ const MainLayout = ({ children }) => {
     return location.pathname.startsWith(path);
   };
 
+  // Inline SVG icons (replace Heroicons)
+  const MenuIcon = () => (
+    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  );
+
+  const CloseIcon = () => (
+    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  );
+
+  const ChevronDownIcon = ({ className = "h-4 w-4", isOpen = false }) => (
+    <svg 
+      className={clsx(className, 'transition-transform duration-200', isOpen ? 'rotate-180' : '')}
+      fill="none" 
+      viewBox="0 0 24 24" 
+      stroke="currentColor"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    </svg>
+  );
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
@@ -62,7 +91,15 @@ const MainLayout = ({ children }) => {
             {/* Logo */}
             <div className="flex items-center">
               <Link to="/" className="flex-shrink-0">
-                <LogoMain className="h-8 w-auto" />
+                <img 
+                  src={LogoMain} 
+                  alt="Infinity Arthvishva Mutual Funds" 
+                  className="h-8 w-auto"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "https://via.placeholder.com/150x40/2563eb/ffffff?text=Infinity+MF";
+                  }}
+                />
               </Link>
             </div>
 
@@ -77,18 +114,13 @@ const MainLayout = ({ children }) => {
                         onClick={() => toggleDropdown(item.name)}
                         className={clsx(
                           'flex items-center text-sm font-medium transition-colors duration-200',
-                          isActive(item.href) || item.children.some(child => isActive(child.href))
+                          isActive(item.href) || (item.children && item.children.some(child => isActive(child.href)))
                             ? 'text-blue-600'
                             : 'text-gray-700 hover:text-blue-600'
                         )}
                       >
                         {item.name}
-                        <ChevronDownIcon
-                          className={clsx(
-                            'ml-1 h-4 w-4 transition-transform duration-200',
-                            openDropdown === item.name ? 'rotate-180' : ''
-                          )}
-                        />
+                        <ChevronDownIcon isOpen={openDropdown === item.name} className="ml-1 h-4 w-4" />
                       </button>
 
                       {openDropdown === item.name && (
@@ -151,11 +183,7 @@ const MainLayout = ({ children }) => {
                 className="p-2 text-gray-700 hover:text-blue-600"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                {isMobileMenuOpen ? (
-                  <XMarkIcon className="h-6 w-6" />
-                ) : (
-                  <Bars3Icon className="h-6 w-6" />
-                )}
+                {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
               </button>
             </div>
           </div>
@@ -175,12 +203,7 @@ const MainLayout = ({ children }) => {
                         className="flex items-center justify-between w-full px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600"
                       >
                         {item.name}
-                        <ChevronDownIcon
-                          className={clsx(
-                            'h-5 w-5 transition-transform duration-200',
-                            openDropdown === item.name ? 'rotate-180' : ''
-                          )}
-                        />
+                        <ChevronDownIcon isOpen={openDropdown === item.name} className="h-5 w-5" />
                       </button>
                       {openDropdown === item.name && (
                         <div className="pl-6 space-y-2 mt-2">
@@ -240,7 +263,17 @@ const MainLayout = ({ children }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="space-y-4">
-              <LogoMain className="h-8 w-auto text-white" />
+              <div className="flex items-center">
+                <img 
+                  src={LogoMain} 
+                  alt="Infinity Arthvishva Mutual Funds" 
+                  className="h-8 w-auto invert"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "https://via.placeholder.com/150x40/ffffff/2563eb?text=Infinity+MF";
+                  }}
+                />
+              </div>
               <p className="text-gray-400 text-sm">
                 Infinity Arthvishva Mutual Funds provides smart investment solutions 
                 to help you achieve your financial goals.
@@ -271,11 +304,11 @@ const MainLayout = ({ children }) => {
             <div>
               <h3 className="text-white font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2">
-                <li><a href="/" className="text-gray-400 hover:text-white">Home</a></li>
-                <li><a href="/about" className="text-gray-400 hover:text-white">About Us</a></li>
-                <li><a href="/funds" className="text-gray-400 hover:text-white">Funds</a></li>
-                <li><a href="/performance" className="text-gray-400 hover:text-white">Performance</a></li>
-                <li><a href="/contact" className="text-gray-400 hover:text-white">Contact</a></li>
+                <li><Link to="/" className="text-gray-400 hover:text-white">Home</Link></li>
+                <li><Link to="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
+                <li><Link to="/funds" className="text-gray-400 hover:text-white">Funds</Link></li>
+                <li><Link to="/performance" className="text-gray-400 hover:text-white">Performance</Link></li>
+                <li><Link to="/contact" className="text-gray-400 hover:text-white">Contact</Link></li>
               </ul>
             </div>
 
@@ -283,11 +316,11 @@ const MainLayout = ({ children }) => {
             <div>
               <h3 className="text-white font-semibold mb-4">Products</h3>
               <ul className="space-y-2">
-                <li><a href="/funds/equity" className="text-gray-400 hover:text-white">Equity Funds</a></li>
-                <li><a href="/funds/debt" className="text-gray-400 hover:text-white">Debt Funds</a></li>
-                <li><a href="/funds/hybrid" className="text-gray-400 hover:text-white">Hybrid Funds</a></li>
-                <li><a href="/sip" className="text-gray-400 hover:text-white">SIP Plans</a></li>
-                <li><a href="/funds/elss" className="text-gray-400 hover:text-white">ELSS Funds</a></li>
+                <li><Link to="/funds/equity" className="text-gray-400 hover:text-white">Equity Funds</Link></li>
+                <li><Link to="/funds/debt" className="text-gray-400 hover:text-white">Debt Funds</Link></li>
+                <li><Link to="/funds/hybrid" className="text-gray-400 hover:text-white">Hybrid Funds</Link></li>
+                <li><Link to="/sip" className="text-gray-400 hover:text-white">SIP Plans</Link></li>
+                <li><Link to="/funds/elss" className="text-gray-400 hover:text-white">ELSS Funds</Link></li>
               </ul>
             </div>
 
@@ -326,18 +359,18 @@ const MainLayout = ({ children }) => {
               </p>
               <div className="mt-4 md:mt-0">
                 <div className="flex space-x-6">
-                  <a href="/privacy" className="text-gray-400 hover:text-white text-sm">
+                  <Link to="/privacy" className="text-gray-400 hover:text-white text-sm">
                     Privacy Policy
-                  </a>
-                  <a href="/terms" className="text-gray-400 hover:text-white text-sm">
+                  </Link>
+                  <Link to="/terms" className="text-gray-400 hover:text-white text-sm">
                     Terms of Service
-                  </a>
-                  <a href="/disclaimer" className="text-gray-400 hover:text-white text-sm">
+                  </Link>
+                  <Link to="/disclaimer" className="text-gray-400 hover:text-white text-sm">
                     Disclaimer
-                  </a>
-                  <a href="/sitemap" className="text-gray-400 hover:text-white text-sm">
+                  </Link>
+                  <Link to="/sitemap" className="text-gray-400 hover:text-white text-sm">
                     Sitemap
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -353,4 +386,3 @@ MainLayout.propTypes = {
 };
 
 export default MainLayout;
-EOF
