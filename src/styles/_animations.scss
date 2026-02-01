@@ -2,9 +2,7 @@
 // Import Sass Modules (MUST BE FIRST!)
 // ============================================================================
 
-@use 'sass:math';
-@use 'sass:map';
-@use 'variables' as *; // Add this line to access variables
+@use 'variables' as *; // This allows access to color variables
 
 // ============================================================================
 // Animation Keyframes and Classes
@@ -91,14 +89,14 @@
 // ============================================================================
 
 @keyframes notificationPulse {
-  0% { box-shadow: 0 0 0 0 rgba($primary-500, 0.7); }
-  70% { box-shadow: 0 0 0 10px rgba($primary-500, 0); }
-  100% { box-shadow: 0 0 0 0 rgba($primary-500, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(#3b82f6, 0.7); } // Using hex color directly
+  70% { box-shadow: 0 0 0 10px rgba(#3b82f6, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(#3b82f6, 0); }
 }
 
 @keyframes glow {
-  0%, 100% { box-shadow: 0 0 5px $primary-400; }
-  50% { box-shadow: 0 0 20px $primary-400, 0 0 30px $primary-400; }
+  0%, 100% { box-shadow: 0 0 5px #60a5fa; } // Using hex color directly
+  50% { box-shadow: 0 0 20px #60a5fa, 0 0 30px #60a5fa; }
 }
 
 @keyframes skeletonLoading {
@@ -115,24 +113,130 @@
 // Animation Utility Classes
 // ============================================================================
 
-.animate-spin { animation: spin 1s linear infinite; }
-.animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
-.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.animate-spin { 
+  animation: spin 1s linear infinite; 
+}
+
+.animate-fade-in { 
+  animation: fadeIn 0.5s ease-in-out; 
+}
+
+.animate-pulse { 
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; 
+}
+
 .animate-skeleton {
-  background: linear-gradient(90deg, $neutral-200 25%, $neutral-100 50%, $neutral-200 75%);
+  background: linear-gradient(90deg, #e5e5e5 25%, #f5f5f5 50%, #e5e5e5 75%); // Using hex colors directly
   background-size: 200px 100%;
   animation: skeletonLoading 1.5s infinite;
 }
-.animate-glow { animation: glow 2s ease-in-out infinite; }
-.animate-float { animation: float 3s ease-in-out infinite; }
 
+.animate-glow { 
+  animation: glow 2s ease-in-out infinite; 
+}
+
+.animate-float { 
+  animation: float 3s ease-in-out infinite; 
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.5s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.3s ease-in-out infinite;
+}
+
+// ============================================================================
+// Animation Modifier Classes
+// ============================================================================
+
+// Duration modifiers
+.animate-fast {
+  animation-duration: 0.15s;
+}
+
+.animate-slow {
+  animation-duration: 0.5s;
+}
+
+.animate-slower {
+  animation-duration: 1s;
+}
+
+// Delay modifiers
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-500 {
+  animation-delay: 0.5s;
+}
+
+// Timing function modifiers
+.animate-linear {
+  animation-timing-function: linear;
+}
+
+.animate-ease {
+  animation-timing-function: ease;
+}
+
+.animate-ease-in {
+  animation-timing-function: ease-in;
+}
+
+.animate-ease-out {
+  animation-timing-function: ease-out;
+}
+
+.animate-ease-in-out {
+  animation-timing-function: ease-in-out;
+}
+
+// ============================================================================
 // Reduced Motion Support
+// ============================================================================
+
 @media (prefers-reduced-motion: reduce) {
+  .animate-spin,
+  .animate-fade-in,
+  .animate-pulse,
+  .animate-skeleton,
+  .animate-glow,
+  .animate-float,
+  .animate-slide-in-right,
+  .animate-fade-in-up,
+  .animate-fade-in-down,
+  .animate-scale-in,
+  .animate-heartbeat {
+    animation: none !important;
+  }
+  
   *, ::before, ::after {
     animation-delay: -1ms !important;
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
-    background-attachment: scroll !important;
     transition-duration: 0s !important;
     transition-delay: 0s !important;
   }
