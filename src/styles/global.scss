@@ -2,8 +2,9 @@
 // Import Sass Modules (MUST BE FIRST!)
 // ============================================================================
 
-// NOTE: sass:math and sass:map are now injected by Vite config
-// Only import partials
+@use 'sass:map';
+
+// Import partials with proper relative paths
 @use './variables' as *;
 @use './mixins' as *;
 @use './animations' as *;
@@ -28,10 +29,6 @@
 
 html {
   scroll-behavior: smooth;
-  
-  // @include reduced-motion {
-  //   scroll-behavior: auto;
-  // }
   
   // Fallback for browsers that don't support prefers-reduced-motion
   @media (prefers-reduced-motion: reduce) {
@@ -192,7 +189,7 @@ table {
 }
 
 // ============================================================================
-// Grid System (12-column)
+// Grid System (12-column) - FIXED
 // ============================================================================
 
 .row {
@@ -214,11 +211,11 @@ table {
   }
 }
 
-// Grid columns using math.div()
+// Grid columns using calc() - FIXED VERSION
 @for $i from 1 through 12 {
   .col-#{$i} {
     flex: 0 0 auto;
-    width: math.percentage(math.div($i, 12));
+    width: calc(100% * #{$i} / 12);
     padding: 0.5rem; // 8px
     
     @media (min-width: 768px) {
@@ -227,12 +224,12 @@ table {
   }
 }
 
-// Responsive Grid Columns
+// Responsive Grid Columns - FIXED
 @media (min-width: 640px) {
   @for $i from 1 through 12 {
     .col-sm-#{$i} {
       flex: 0 0 auto;
-      width: math.percentage(math.div($i, 12));
+      width: calc(100% * #{$i} / 12);
     }
   }
 }
@@ -241,7 +238,7 @@ table {
   @for $i from 1 through 12 {
     .col-md-#{$i} {
       flex: 0 0 auto;
-      width: math.percentage(math.div($i, 12));
+      width: calc(100% * #{$i} / 12);
     }
   }
 }
@@ -250,7 +247,7 @@ table {
   @for $i from 1 through 12 {
     .col-lg-#{$i} {
       flex: 0 0 auto;
-      width: math.percentage(math.div($i, 12));
+      width: calc(100% * #{$i} / 12);
     }
   }
 }
@@ -259,7 +256,7 @@ table {
   @for $i from 1 through 12 {
     .col-xl-#{$i} {
       flex: 0 0 auto;
-      width: math.percentage(math.div($i, 12));
+      width: calc(100% * #{$i} / 12);
     }
   }
 }
