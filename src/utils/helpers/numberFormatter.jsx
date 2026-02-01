@@ -1,6 +1,42 @@
+import React from 'react';
+
 /**
  * Number formatting utilities
  */
+
+export const formatCurrency = (amount, currency = 'INR', locale = 'en-IN', options = {}) => {
+  if (amount === null || amount === undefined) return '-';
+  
+  const {
+    decimals = 2,
+    compact = false,
+    minimumFractionDigits,
+    maximumFractionDigits,
+    showSymbol = true,
+  } = options;
+  
+  const formatterOptions = {
+    style: showSymbol ? 'currency' : 'decimal',
+    currency: currency,
+    minimumFractionDigits: minimumFractionDigits !== undefined ? minimumFractionDigits : decimals,
+    maximumFractionDigits: maximumFractionDigits !== undefined ? maximumFractionDigits : decimals,
+  };
+  
+  if (compact) {
+    formatterOptions.notation = 'compact';
+    formatterOptions.compactDisplay = 'short';
+  }
+  
+  try {
+    const formatter = new Intl.NumberFormat(locale, formatterOptions);
+    return formatter.format(amount);
+  } catch (error) {
+    // Fallback formatting
+    const symbol = currency === 'INR' ? '₹' : currency === 'USD' ? '$' : '';
+    return `${symbol}${formatNumber(amount, { decimals, compact, locale })}`;
+  }
+};
+
 export const formatNumber = (num, options = {}) => {
   if (num === null || num === undefined) return '-';
   
