@@ -11,7 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import App from './App';
-import { store } from './store';
+import { store } from "./store/store";
 import './styles/global.scss';
 
 // Disable React DevTools in production (without external package)
