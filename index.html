@@ -4,13 +4,16 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.ico" />
     <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#2563eb">
     
     <!-- Primary Meta Tags -->
     <title>Infinity Arthvishva | Smart Mutual Fund Investment Platform</title>
     <meta name="title" content="Infinity Arthvishva | Smart Mutual Fund Investment Platform">
     <meta name="description" content="WealthForge - Your trusted partner for smart mutual fund investments, portfolio management, and financial growth. Start investing with experts today.">
+    <meta name="keywords" content="mutual funds, investment, portfolio management, financial planning, wealth management, SIP, lumpsum, India">
+    <meta name="author" content="Infinity Arthvishva">
+    <meta name="robots" content="index, follow">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -18,6 +21,9 @@
     <meta property="og:title" content="Infinity Arthvishva | Smart Mutual Fund Investment Platform">
     <meta property="og:description" content="WealthForge - Your trusted partner for smart mutual fund investments, portfolio management, and financial growth. Start investing with experts today.">
     <meta property="og:image" content="/assets/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Infinity Arthvishva">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -25,34 +31,43 @@
     <meta property="twitter:title" content="Infinity Arthvishva | Smart Mutual Fund Investment Platform">
     <meta property="twitter:description" content="WealthForge - Your trusted partner for smart mutual fund investments, portfolio management, and financial growth. Start investing with experts today.">
     <meta property="twitter:image" content="/assets/images/twitter-image.jpg">
+    <meta property="twitter:creator" content="@infinityarthvishva">
     
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://api.infinityarthvishva.com">
     
-    <!-- Preload critical fonts -->
+    <!-- Preload critical assets -->
     <link rel="preload" href="/assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/src/index.js" as="script">
     
     <!-- Fonts from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
     
     <!-- iOS specific meta tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Infinity Arthvishva">
     <meta name="format-detection" content="telephone=no">
+    <meta name="apple-touch-fullscreen" content="yes">
     
     <!-- Android specific meta tags -->
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Infinity Arthvishva">
     
     <!-- PWA manifest -->
     <link rel="manifest" href="/manifest.json">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://infinityarthvishva.com/">
+    
+    <!-- Additional link tags -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" hreflang="en" href="https://infinityarthvishva.com/" />
+    <link rel="alternate" hreflang="hi" href="https://infinityarthvishva.com/hi/" />
     
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
@@ -63,6 +78,7 @@
         "alternateName": "WealthForge",
         "url": "https://infinityarthvishva.com",
         "logo": "https://infinityarthvishva.com/assets/icons/logo.svg",
+        "image": "https://infinityarthvishva.com/assets/images/og-image.jpg",
         "sameAs": [
             "https://www.facebook.com/infinityarthvishva",
             "https://twitter.com/infinityarthvishva",
@@ -73,7 +89,9 @@
             "@type": "ContactPoint",
             "telephone": "+91-22-1234-5678",
             "contactType": "customer service",
-            "availableLanguage": ["English", "Hindi", "Gujarati"]
+            "availableLanguage": ["English", "Hindi", "Gujarati"],
+            "areaServed": "IN",
+            "contactOption": "TollFree"
         },
         "description": "Leading mutual fund investment platform providing expert guidance and portfolio management services.",
         "foundingDate": "2023",
@@ -81,20 +99,56 @@
             "@type": "Person",
             "name": "Infinity Arthvishva Team"
         },
-        "areaServed": {
-            "@type": "Country",
-            "name": "India"
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Financial District",
+            "addressLocality": "Mumbai",
+            "addressRegion": "Maharashtra",
+            "postalCode": "400001",
+            "addressCountry": "India"
+        },
+        "openingHours": "Mo-Fr 09:00-18:00",
+        "priceRange": "₹₹",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "1250"
+        }
+    }
+    </script>
+    
+    <!-- Additional Structured Data for Web Page -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Infinity Arthvishva | Smart Mutual Fund Investment Platform",
+        "description": "WealthForge - Your trusted partner for smart mutual fund investments, portfolio management, and financial growth.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Infinity Arthvishva",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://infinityarthvishva.com/assets/icons/logo.svg"
+            }
         }
     }
     </script>
     
     <!-- Critical CSS (inlined for performance) -->
-    <style>
+    <style id="critical-css">
         /* Critical CSS: Styles needed for initial page load */
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
         }
         
         :root {
@@ -115,7 +169,7 @@
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
                 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -124,6 +178,7 @@
             line-height: 1.5;
             overflow-x: hidden;
             min-height: 100vh;
+            text-rendering: optimizeSpeed;
         }
         
         #root {
@@ -145,21 +200,30 @@
             justify-content: center;
             background: var(--bg-primary);
             z-index: 9999;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .app-loading.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
         
         .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid var(--border-color);
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(37, 99, 235, 0.1);
             border-top-color: var(--primary-color);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
         
         .loading-text {
-            margin-top: 20px;
+            margin-top: 16px;
             color: var(--text-secondary);
-            font-size: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
         
         @keyframes spin {
@@ -170,188 +234,408 @@
         
         /* Reduced motion */
         @media (prefers-reduced-motion: reduce) {
-            * {
+            *,
+            *::before,
+            *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            
+            .loading-spinner {
+                animation: none;
+                border-top-color: var(--primary-color);
             }
         }
         
         /* Focus styles for accessibility */
         :focus-visible {
-            outline: 2px solid var(--primary-color);
+            outline: 3px solid var(--primary-color);
             outline-offset: 2px;
+            border-radius: 2px;
         }
         
         /* Skip to main content link */
         .skip-to-main {
             position: absolute;
-            top: -40px;
+            top: -100%;
             left: 0;
             background: var(--primary-color);
             color: white;
-            padding: 8px 16px;
+            padding: 12px 16px;
             z-index: 10000;
             text-decoration: none;
+            font-weight: 600;
+            border-radius: 0 0 4px 0;
+            transition: top 0.2s ease;
         }
         
         .skip-to-main:focus {
             top: 0;
         }
+        
+        /* Print styles */
+        @media print {
+            .app-loading,
+            .skip-to-main {
+                display: none !important;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 12pt;
+            }
+        }
+        
+        /* High contrast mode */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-color: #1d4ed8;
+                --text-primary: #000000;
+                --border-color: #000000;
+            }
+        }
+        
+        /* Dark mode preferences */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-primary: #f9fafb;
+                --text-secondary: #d1d5db;
+                --bg-primary: #111827;
+                --bg-secondary: #1f2937;
+                --border-color: #374151;
+            }
+        }
+        
+        /* Mobile optimization */
+        @media (max-width: 640px) {
+            .loading-spinner {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .loading-text {
+                font-size: 13px;
+            }
+        }
     </style>
+    
+    <!-- Non-critical CSS will be loaded asynchronously -->
+    <link rel="preload" href="/src/styles/global.scss" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="/src/styles/global.scss">
+    </noscript>
 </head>
 <body>
     <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    <a href="#main-content" class="skip-to-main">
+        Skip to main content
+    </a>
     
     <!-- Loading screen -->
-    <div id="loading" class="app-loading">
-        <div class="loading-spinner"></div>
+    <div id="app-loading" class="app-loading" aria-live="polite" aria-label="Loading application">
+        <div class="loading-spinner" aria-hidden="true"></div>
         <div class="loading-text">Loading Infinity Arthvishva...</div>
     </div>
     
     <!-- Main app container -->
-    <div id="root"></div>
+    <div id="root" role="main" aria-label="Application main content"></div>
     
     <!-- Main content anchor for accessibility -->
-    <div id="main-content" tabindex="-1"></div>
+    <div id="main-content" tabindex="-1" style="position: absolute; top: -1000px; left: -1000px;">
+        Main content starts here
+    </div>
     
-    <!-- Service worker registration -->
+    <!-- Service worker registration and initialization script -->
     <script>
-        // Register service worker for PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js').catch(error => {
-                    console.log('ServiceWorker registration failed: ', error);
-                });
-            });
-        }
-        
-        // Remove loading screen when app is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            // Hide loading screen after app initialization
-            const loadingElement = document.getElementById('loading');
-            if (loadingElement) {
-                // Show loading screen for minimum time for better UX
+        // Enhanced loading state management
+        (function() {
+            'use strict';
+            
+            // DOM ready state
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initApp);
+            } else {
+                initApp();
+            }
+            
+            function initApp() {
+                // Hide loading screen with animation
                 setTimeout(() => {
-                    loadingElement.style.opacity = '0';
-                    loadingElement.style.visibility = 'hidden';
-                    loadingElement.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
-                    
-                    // Remove element after transition
-                    setTimeout(() => {
-                        loadingElement.remove();
-                    }, 300);
-                }, 1000); // Minimum 1 second loading screen
-            }
-        });
-        
-        // Theme detection
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        const storedTheme = localStorage.getItem('wealthforge_theme');
-        
-        // Set initial theme
-        if (storedTheme === 'dark' || (!storedTheme && prefersDarkScheme.matches)) {
-            document.documentElement.classList.add('dark-theme');
-        }
-        
-        // Listen for theme changes
-        prefersDarkScheme.addEventListener('change', (e) => {
-            if (!localStorage.getItem('wealthforge_theme')) {
-                if (e.matches) {
-                    document.documentElement.classList.add('dark-theme');
-                } else {
-                    document.documentElement.classList.remove('dark-theme');
-                }
-            }
-        });
-        
-        // Error handling
-        window.addEventListener('error', (event) => {
-            console.error('Uncaught error:', event.error);
-            // You could send this to an error tracking service
-        });
-        
-        // Offline detection
-        window.addEventListener('offline', () => {
-            // Show offline notification
-            const offlineEvent = new CustomEvent('app-offline', { detail: { time: new Date() } });
-            window.dispatchEvent(offlineEvent);
-        });
-        
-        window.addEventListener('online', () => {
-            // Show online notification
-            const onlineEvent = new CustomEvent('app-online', { detail: { time: new Date() } });
-            window.dispatchEvent(onlineEvent);
-        });
-        
-        // Performance monitoring
-        window.addEventListener('load', () => {
-            // Measure page load performance
-            if ('performance' in window) {
-                const perfData = window.performance.getEntriesByType('navigation')[0];
-                if (perfData) {
-                    const loadTime = perfData.loadEventEnd - perfData.fetchStart;
-                    console.log(`Page loaded in ${loadTime}ms`);
-                    
-                    // Send to analytics if needed
-                    if (window.gtag) {
-                        window.gtag('event', 'timing_complete', {
-                            'name': 'page_load',
-                            'value': Math.round(loadTime),
-                            'event_category': 'Performance'
-                        });
+                    const loadingElement = document.getElementById('app-loading');
+                    if (loadingElement) {
+                        loadingElement.classList.add('hidden');
+                        // Remove from DOM after animation
+                        setTimeout(() => {
+                            if (loadingElement.parentNode) {
+                                loadingElement.parentNode.removeChild(loadingElement);
+                            }
+                        }, 500);
                     }
+                }, 800); // Minimum display time
+            
+                // Initialize service worker for PWA
+                if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
+                    window.addEventListener('load', () => {
+                        navigator.serviceWorker.register('/service-worker.js', {
+                            scope: '/',
+                            updateViaCache: 'none'
+                        }).then(registration => {
+                            console.log('ServiceWorker registered:', registration.scope);
+                            
+                            // Check for updates
+                            registration.addEventListener('updatefound', () => {
+                                const newWorker = registration.installing;
+                                console.log('ServiceWorker update found:', newWorker.state);
+                            });
+                        }).catch(error => {
+                            console.warn('ServiceWorker registration failed:', error);
+                        });
+                    });
                 }
+                
+                // Theme detection and management
+                const themeManager = {
+                    init() {
+                        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+                        const storedTheme = localStorage.getItem('wealthforge_theme');
+                        
+                        // Set initial theme
+                        if (storedTheme === 'dark' || (!storedTheme && prefersDarkScheme.matches)) {
+                            this.enableDarkMode();
+                        } else if (storedTheme === 'light') {
+                            this.enableLightMode();
+                        }
+                        
+                        // Listen for system theme changes
+                        prefersDarkScheme.addEventListener('change', (e) => {
+                            if (!localStorage.getItem('wealthforge_theme')) {
+                                e.matches ? this.enableDarkMode() : this.enableLightMode();
+                            }
+                        });
+                        
+                        // Expose theme toggle function globally
+                        window.toggleTheme = () => {
+                            const isDark = document.documentElement.classList.contains('dark-theme');
+                            isDark ? this.enableLightMode() : this.enableDarkMode();
+                        };
+                    },
+                    
+                    enableDarkMode() {
+                        document.documentElement.classList.add('dark-theme');
+                        document.documentElement.classList.remove('light-theme');
+                        localStorage.setItem('wealthforge_theme', 'dark');
+                        this.dispatchThemeChange('dark');
+                    },
+                    
+                    enableLightMode() {
+                        document.documentElement.classList.add('light-theme');
+                        document.documentElement.classList.remove('dark-theme');
+                        localStorage.setItem('wealthforge_theme', 'light');
+                        this.dispatchThemeChange('light');
+                    },
+                    
+                    dispatchThemeChange(theme) {
+                        window.dispatchEvent(new CustomEvent('theme-change', { 
+                            detail: { theme } 
+                        }));
+                    }
+                };
+                
+                themeManager.init();
+                
+                // Error boundary for global errors
+                window.addEventListener('error', (event) => {
+                    console.error('Global error:', event.error);
+                    // Could send to error tracking service here
+                    const errorEvent = new CustomEvent('app-error', { 
+                        detail: { 
+                            error: event.error,
+                            timestamp: new Date().toISOString()
+                        }
+                    });
+                    window.dispatchEvent(errorEvent);
+                });
+                
+                // Unhandled promise rejection handler
+                window.addEventListener('unhandledrejection', (event) => {
+                    console.error('Unhandled promise rejection:', event.reason);
+                });
+                
+                // Network status monitoring
+                const networkMonitor = {
+                    init() {
+                        window.addEventListener('offline', () => {
+                            this.dispatchNetworkStatus(false);
+                        });
+                        
+                        window.addEventListener('online', () => {
+                            this.dispatchNetworkStatus(true);
+                        });
+                        
+                        // Initial status
+                        this.dispatchNetworkStatus(navigator.onLine);
+                    },
+                    
+                    dispatchNetworkStatus(isOnline) {
+                        window.dispatchEvent(new CustomEvent('network-status', { 
+                            detail: { 
+                                online: isOnline,
+                                timestamp: new Date().toISOString()
+                            }
+                        }));
+                        
+                        if (!isOnline) {
+                            console.warn('Application is offline');
+                        } else {
+                            console.info('Application is online');
+                        }
+                    }
+                };
+                
+                networkMonitor.init();
+                
+                // Performance monitoring
+                if ('performance' in window) {
+                    window.addEventListener('load', () => {
+                        const navigationEntry = performance.getEntriesByType('navigation')[0];
+                        if (navigationEntry) {
+                            const perfMetrics = {
+                                dns: navigationEntry.domainLookupEnd - navigationEntry.domainLookupStart,
+                                tcp: navigationEntry.connectEnd - navigationEntry.connectStart,
+                                request: navigationEntry.responseEnd - navigationEntry.requestStart,
+                                domLoad: navigationEntry.domContentLoadedEventEnd - navigationEntry.domContentLoadedEventStart,
+                                total: navigationEntry.loadEventEnd - navigationEntry.fetchStart
+                            };
+                            
+                            console.log('Performance metrics:', perfMetrics);
+                            
+                            // Dispatch performance event for analytics
+                            window.dispatchEvent(new CustomEvent('performance-metrics', { 
+                                detail: perfMetrics 
+                            }));
+                            
+                            // Send to Google Analytics if available
+                            if (window.gtag && perfMetrics.total) {
+                                window.gtag('event', 'timing_complete', {
+                                    'name': 'page_load',
+                                    'value': Math.round(perfMetrics.total),
+                                    'event_category': 'Performance Metrics'
+                                });
+                            }
+                        }
+                    });
+                }
+                
+                // Memory monitoring (if available)
+                if ('memory' in performance) {
+                    setInterval(() => {
+                        const memory = performance.memory;
+                        console.debug('Memory usage:', {
+                            usedJSHeapSize: Math.round(memory.usedJSHeapSize / 1024 / 1024) + 'MB',
+                            totalJSHeapSize: Math.round(memory.totalJSHeapSize / 1024 / 1024) + 'MB',
+                            jsHeapSizeLimit: Math.round(memory.jsHeapSizeLimit / 1024 / 1024) + 'MB'
+                        });
+                    }, 60000); // Check every minute
+                }
+                
+                // Register beforeunload for cleanup
+                window.addEventListener('beforeunload', () => {
+                    // Cleanup tasks before page unload
+                    window.dispatchEvent(new CustomEvent('app-before-unload'));
+                });
+                
+                // App initialized event
+                setTimeout(() => {
+                    window.dispatchEvent(new CustomEvent('app-initialized', {
+                        detail: {
+                            timestamp: new Date().toISOString(),
+                            userAgent: navigator.userAgent,
+                            platform: navigator.platform
+                        }
+                    }));
+                }, 100);
             }
-        });
-    </script>
-    
-    <!-- External scripts (only in production) -->
-    <script type="module" src="/src/index.js"></script>
-    
-    <!-- Google Analytics (only in production) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXX', {
-            page_title: document.title,
-            page_location: window.location.href
-        });
-        
-        // Set gtag as global
-        window.gtag = gtag;
-    </script>
-    
-    <!-- Hotjar (only in production) -->
-    <!--
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:XXXXXX,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
-    -->
-    
-    <!-- Crisp Chat (only in production) -->
-    <!--
-    <script type="text/javascript">
-        window.$crisp=[];
-        window.CRISP_WEBSITE_ID="XXXXX-XXXX-XXXX-XXXX-XXXXXXXXX";
-        (function(){
-            d=document;
-            s=d.createElement("script");
-            s.src="https://client.crisp.chat/l.js";
-            s.async=1;
-            d.getElementsByTagName("head")[0].appendChild(s);
         })();
     </script>
-    -->
+    
+    <!-- Main application script -->
+    <script type="module" src="/src/index.js"></script>
+    
+    <!-- External analytics scripts (production only) -->
+    <script>
+        // Only load analytics in production
+        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+            // Google Analytics
+            (function() {
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX';
+                document.head.appendChild(script);
+                
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-XXXXXXX', {
+                    page_title: document.title,
+                    page_location: window.location.href,
+                    page_path: window.location.pathname,
+                    send_page_view: true,
+                    anonymize_ip: true
+                });
+                window.gtag = gtag;
+            })();
+            
+            // Microsoft Clarity (optional)
+            /*
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "YOUR_PROJECT_ID");
+            */
+        }
+    </script>
+    
+    <!-- Fallback for JavaScript disabled -->
+    <noscript>
+        <style>
+            .app-loading {
+                display: none;
+            }
+            .nojs-message {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background: var(--bg-primary);
+                color: var(--text-primary);
+                padding: 2rem;
+                text-align: center;
+                z-index: 10000;
+            }
+            .nojs-message h1 {
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+            }
+            .nojs-message p {
+                max-width: 600px;
+                margin-bottom: 1.5rem;
+                line-height: 1.6;
+            }
+        </style>
+        <div class="nojs-message">
+            <h1>JavaScript Required</h1>
+            <p>Infinity Arthvishva requires JavaScript to function properly. Please enable JavaScript in your browser settings to continue.</p>
+            <p>If you need assistance, please contact our support team.</p>
+        </div>
+    </noscript>
 </body>
 </html>
