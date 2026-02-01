@@ -220,7 +220,7 @@ table {
 @for $i from 1 through 12 {
   .col-#{$i} {
     flex: 0 0 auto;
-    width: percentage(math.div($i, 12));
+    width: math.percentage(math.div($i, 12));
     padding: 0.5rem; // 8px
     
     @media (min-width: 768px) {
@@ -234,7 +234,7 @@ table {
   @for $i from 1 through 12 {
     .col-sm-#{$i} {
       flex: 0 0 auto;
-      width: percentage(math.div($i, 12));
+      width: math.percentage(math.div($i, 12));
     }
   }
 }
@@ -243,7 +243,7 @@ table {
   @for $i from 1 through 12 {
     .col-md-#{$i} {
       flex: 0 0 auto;
-      width: percentage(math.div($i, 12));
+      width: math.percentage(math.div($i, 12));
     }
   }
 }
@@ -252,7 +252,7 @@ table {
   @for $i from 1 through 12 {
     .col-lg-#{$i} {
       flex: 0 0 auto;
-      width: percentage(math.div($i, 12));
+      width: math.percentage(math.div($i, 12));
     }
   }
 }
@@ -261,7 +261,7 @@ table {
   @for $i from 1 through 12 {
     .col-xl-#{$i} {
       flex: 0 0 auto;
-      width: percentage(math.div($i, 12));
+      width: math.percentage(math.div($i, 12));
     }
   }
 }
