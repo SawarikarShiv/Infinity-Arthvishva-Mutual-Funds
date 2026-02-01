@@ -2,10 +2,8 @@
 // Import Sass Modules (MUST BE FIRST!)
 // ============================================================================
 
-@use 'sass:math';
-@use 'sass:map';
-
-// Import partials with proper relative paths
+// NOTE: sass:math and sass:map are now injected by Vite config
+// Only import partials
 @use './variables' as *;
 @use './mixins' as *;
 @use './animations' as *;
