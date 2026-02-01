@@ -207,7 +207,7 @@ export const selectAuthError = (state) => state.auth.error;
 export const selectAuthSuccess = (state) => state.auth.success;
 export const selectAuthMessage = (state) => state.auth.message;
 
-// Export actions including the new ones
+// Export actions
 export const { 
   clearError, 
   clearSuccess, 
