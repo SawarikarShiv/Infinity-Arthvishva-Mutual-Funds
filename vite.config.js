@@ -137,19 +137,14 @@ export default defineConfig({
     // Global CSS imports
     preprocessorOptions: {
       scss: {
-        // IMPORTANT: This fixes the @use error
-        // We're NOT using additionalData to avoid @use ordering issues
-        // Instead, we'll use a main entry file (index.scss) that handles imports
-        // If you need global variables, create a main.scss that imports everything
-        
-        // Example if you want to inject variables globally (optional):
-        // additionalData: `@use "./src/styles/variables.scss" as *;`
-        
-        // But better approach: Create src/styles/index.scss that imports everything
-        // Then import that in your main App.jsx
-        
-        // For now, leave this empty or comment it out
-        additionalData: '',
+        // IMPORTANT: This injects global variables/mixins for ALL Sass files
+        // This fixes the @use/@import ordering issues
+        additionalData: `
+          @use "sass:math";
+          @use "sass:map";
+          @use "@/styles/variables.scss" as *;
+          @use "@/styles/mixins.scss" as *;
+        `,
         
         // Modern Sass compiler settings
         api: 'modern-compiler',
@@ -188,12 +183,25 @@ export default defineConfig({
     ],
     exclude: [],
     esbuildOptions: {
+      // FIX for JSX in .js files
       loader: {
         '.js': 'jsx',
         '.jsx': 'jsx',
+        '.ts': 'tsx',
+        '.tsx': 'tsx',
       },
       target: 'es2020',
     },
+  },
+  
+  // ESBuild configuration - FIX for JSX in .js files
+  esbuild: {
+    loader: 'jsx',
+    include: /src\/.*\.jsx?$/, // This tells Vite to treat .js files as .jsx
+    exclude: [],
+    jsxFactory: 'React.createElement',
+    jsxFragment: 'React.Fragment',
+    target: 'es2020',
   },
   
   // Environment variables
@@ -204,13 +212,6 @@ export default defineConfig({
   
   // Clear screen on restart
   clearScreen: false,
-  
-  // ESBuild configuration
-  esbuild: {
-    jsxFactory: 'React.createElement',
-    jsxFragment: 'React.Fragment',
-    target: 'es2020',
-  },
   
   // Experimental features
   experimental: {
