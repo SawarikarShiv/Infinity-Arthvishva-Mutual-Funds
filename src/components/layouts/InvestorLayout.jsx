@@ -358,4 +358,4 @@ InvestorLayout.propTypes = {
 };
 
 export default InvestorLayout;
-EOF
+
