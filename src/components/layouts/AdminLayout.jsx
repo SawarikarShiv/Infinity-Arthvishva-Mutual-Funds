@@ -258,4 +258,3 @@ AdminLayout.propTypes = {
 };
 
 export default AdminLayout;
-EOF
