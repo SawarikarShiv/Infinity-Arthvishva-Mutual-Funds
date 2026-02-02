@@ -1,157 +1,124 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Outlet, Navigate, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { clsx } from 'clsx';
-import { LogoMain } from '@/assets';
+import { Outlet } from 'react-router-dom';
 
-const AuthLayout = ({ children }) => {
-  const { isAuthenticated } = useSelector((state) => state.auth);
-  const location = useLocation();
-
-  // If user is already authenticated, redirect to dashboard
-  if (isAuthenticated) {
-    const userRole = useSelector((state) => state.auth.user?.role);
-    let redirectPath = '/';
-    
-    switch (userRole) {
-      case 'investor':
-        redirectPath = '/investor/dashboard';
-        break;
-      case 'advisor':
-        redirectPath = '/advisor/dashboard';
-        break;
-      case 'admin':
-        redirectPath = '/admin/dashboard';
-        break;
-      default:
-        redirectPath = '/';
-    }
-    
-    return <Navigate to={redirectPath} state={{ from: location }} replace />;
-  }
+const AuthLayout = () => {
+  const currentYear = new Date().getFullYear();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 flex flex-col">
-      {/* Top Navigation */}
-      <nav className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <LogoMain className="h-8 w-auto" />
-              </div>
-              <div className="hidden md:block ml-10">
-                <div className="flex items-baseline space-x-4">
-                  <span className="text-gray-500 text-sm">
-                    Infinity Arthvishva Mutual Funds
-                  </span>
-                </div>
-              </div>
+    <div className="auth-layout d-flex min-vh-100 bg-light">
+      {/* Left Side: Branding/Illustration */}
+      <div className="auth-brand-side d-none d-lg-flex col-lg-6 bg-primary-gradient align-items-center justify-content-center text-white p-5">
+        <div className="auth-brand-content text-center">
+          <div className="mb-4">
+            <img 
+              src="/assets/icons/logo-white.svg" 
+              alt="Infinity Arthvishva" 
+              className="auth-logo"
+            />
+          </div>
+          <h1 className="display-5 fw-bold mb-4">Infinity Arthvishva</h1>
+          <p className="lead opacity-85 mb-4">
+            Smart Mutual Fund Investment Platform. 
+            Manage your wealth with expert guidance and real-time tracking.
+          </p>
+          <div className="features-list text-start mt-5">
+            <div className="feature-item d-flex align-items-center mb-3">
+              <i className="bi bi-shield-check me-3 fs-5"></i>
+              <span>Secure & Regulated Platform</span>
             </div>
-            <div className="flex items-center">
-              <a
-                href="/"
-                className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-              >
-                Back to Home
-              </a>
+            <div className="feature-item d-flex align-items-center mb-3">
+              <i className="bi bi-graph-up me-3 fs-5"></i>
+              <span>Real-time Portfolio Tracking</span>
             </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Main Content */}
-      <div className="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md">
-          {/* Logo and Title */}
-          <div className="text-center mb-8">
-            <LogoMain className="h-12 w-auto mx-auto" />
-            <h2 className="mt-4 text-3xl font-extrabold text-gray-900">
-              Welcome to Infinity Arthvishva
-            </h2>
-            <p className="mt-2 text-sm text-gray-600">
-              Smart Investment Platform for Mutual Funds
-            </p>
-          </div>
-
-          {/* Form Container */}
-          <div className="bg-white py-8 px-6 shadow-xl rounded-xl sm:px-10 border border-gray-100">
-            {children || <Outlet />}
-          </div>
-
-          {/* Footer Links */}
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-600">
-              By continuing, you agree to our{' '}
-              <a href="/terms" className="font-medium text-blue-600 hover:text-blue-500">
-                Terms of Service
-              </a>{' '}
-              and{' '}
-              <a href="/privacy" className="font-medium text-blue-600 hover:text-blue-500">
-                Privacy Policy
-              </a>
-            </p>
-          </div>
-
-          {/* Support Info */}
-          <div className="mt-8 text-center">
-            <div className="inline-flex items-center text-sm text-gray-500">
-              <svg
-                className="h-5 w-5 text-gray-400 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
-              Need help? Call us at{' '}
-              <a href="tel:18001234567" className="font-medium text-blue-600 ml-1">
-                1800-123-4567
-              </a>
+            <div className="feature-item d-flex align-items-center">
+              <i className="bi bi-headset me-3 fs-5"></i>
+              <span>Expert Advisory Support</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-sm text-gray-500">
-              © {new Date().getFullYear()} Infinity Arthvishva Mutual Funds. All rights reserved.
-            </div>
-            <div className="mt-4 md:mt-0">
-              <div className="flex space-x-6">
-                <a href="/about" className="text-sm text-gray-500 hover:text-gray-900">
-                  About
-                </a>
-                <a href="/contact" className="text-sm text-gray-500 hover:text-gray-900">
-                  Contact
-                </a>
-                <a href="/privacy" className="text-sm text-gray-500 hover:text-gray-900">
-                  Privacy
-                </a>
-                <a href="/terms" className="text-sm text-gray-500 hover:text-gray-900">
-                  Terms
-                </a>
-              </div>
+      {/* Right Side: Authentication Forms */}
+      <div className="auth-form-side col-12 col-lg-6 d-flex align-items-center justify-content-center p-4">
+        <div className="auth-form-container w-100" style={{ maxWidth: '450px' }}>
+          {/* Mobile Logo */}
+          <div className="text-center mb-4 d-lg-none">
+            <img 
+              src="/assets/icons/logo.svg" 
+              alt="Infinity Arthvishva Logo" 
+              className="mobile-logo"
+            />
+          </div>
+          
+          {/* Form Card */}
+          <div className="auth-card card shadow-lg border-0">
+            <div className="card-body p-4 p-md-5">
+              {/* This is where Login/Register forms will appear */}
+              <Outlet />
             </div>
           </div>
+
+          {/* Footer */}
+          <div className="auth-footer mt-4 text-center text-muted">
+            <small>
+              &copy; {currentYear} Infinity Arthvishva. All rights reserved.
+              <div className="mt-2">
+                <a href="/privacy" className="text-muted text-decoration-none me-3">Privacy Policy</a>
+                <a href="/terms" className="text-muted text-decoration-none">Terms of Service</a>
+              </div>
+            </small>
+          </div>
         </div>
-      </footer>
+      </div>
     </div>
   );
 };
 
-AuthLayout.propTypes = {
-  children: PropTypes.node,
-};
-
 export default AuthLayout;
-EOF
+
+// Optional: Add CSS for better styling
+const styles = `
+.auth-layout {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bg-primary-gradient {
+  background: linear-gradient(135deg, #4a6ee0 0%, #3a56d0 100%);
+}
+
+.auth-logo {
+  width: 150px;
+  height: auto;
+}
+
+.mobile-logo {
+  width: 60px;
+  height: auto;
+}
+
+.auth-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.feature-item {
+  font-size: 0.95rem;
+}
+
+.auth-footer {
+  font-size: 0.85rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .auth-form-container {
+    padding: 1rem;
+  }
+  
+  .auth-card {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+`;
+
+// You can add this CSS to your global styles or create a separate AuthLayout.css file
