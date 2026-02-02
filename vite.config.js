@@ -138,11 +138,15 @@ export default defineConfig({
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   
-  // CSS configuration - FIXED for Sass @use error
+  // CSS configuration - UPDATED for Sass @use error and deprecation warnings
   css: {
     // Global CSS imports
     preprocessorOptions: {
       scss: {
+        // Modern Sass API to remove deprecation warnings
+        api: 'modern-compiler',
+        // Silence deprecation warnings
+        silenceDeprecations: ['legacy-js-api', 'import', 'slash-div'],
         // ONLY inject variables and mixins, NOT sass modules
         additionalData: `
           @use "@/styles/variables.scss" as *;
@@ -177,7 +181,7 @@ export default defineConfig({
       'react-i18next',
       'react-hook-form',
       'yup',
-      'react-toastify', // ADD THIS
+      'react-toastify',
     ],
     exclude: [],
     esbuildOptions: {
